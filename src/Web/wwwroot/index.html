@@ -72,6 +72,22 @@
         globalThis.writeVersionedScript('_content/DrawnUi.Blazor.Core/drawnui-loader.js');
     </script>
     <script>
+        globalThis.spaceShooterStorage = {
+            get(key) {
+                try {
+                    return globalThis.localStorage.getItem(key);
+                } catch {
+                    return null;
+                }
+            },
+            set(key, value) {
+                try {
+                    globalThis.localStorage.setItem(key, value);
+                } catch {
+                }
+            }
+        };
+
         globalThis.ensureBlazorRuntime()
             .then(() => globalThis.DrawnUiLoader.startBlazorWithLoader({}))
             .catch(error => {

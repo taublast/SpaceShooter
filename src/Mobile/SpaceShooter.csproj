@@ -59,15 +59,7 @@
     <AndroidEnableSGenConcurrent>True</AndroidEnableSGenConcurrent>
     <AndroidEnableMultiDex>True</AndroidEnableMultiDex>
   </PropertyGroup>
-
-
-  <ItemGroup>
-    <!-- Exclude sibling projects from MAUI's implicit SDK glob -->
-    <Compile Remove="Shared\**" />
-    <Compile Remove="Web\**" />
-    <None Remove="Shared\**" />
-    <None Remove="Web\**" />
-  </ItemGroup>
+     
 
   <ItemGroup>
 
@@ -110,10 +102,10 @@
 	</ItemGroup>
 
   <!-- Shared game code -->
-  <Import Project="Shared\SpaceShooter.Shared.projitems" Label="Shared" />
+  <Import Project="..\Shared\SpaceShooter.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="DrawnUi.Maui.Game" Version="1.10.0.1-preview1.2" />
+    <PackageReference Include="DrawnUi.Maui.Game" Version="1.10.0.1-preview1.3" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
   </ItemGroup>
 

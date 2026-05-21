@@ -9,7 +9,6 @@
     <Import_RootNamespace>SpaceShooter</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Helpers\AssetPaths.cs" />
     <!-- Game logic (platform-agnostic) -->
     <Compile Include="$(MSBuildThisFileDirectory)Game\SpaceShooter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game\SpaceShooter.BulletSprite.cs" />
