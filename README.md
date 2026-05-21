@@ -1,15 +1,15 @@
-# _.NET MAUI_ Space Shooter Game
+# Space Shooter Game Etude
+
+_.NET MAUI / Blazor_  simple yet heavily animated arcade cross-platform game runs on Android, Windows, iOS, Mac (Catalyst) and in Browser (WebAssembly), all from a single code base.  
+Desktop and browser versions also support both mouse and keyboard along with touch.
+
+* [Try in browser](https://taublast.github.io/SpaceShooter) 
 
 https://github.com/taublast/AppoMobi.Maui.DrawnUi.SpaceShooter/assets/25801194/30523e94-12d5-4740-8af3-bebf11ef317f
 
 Built with [DrawnUI for .NET MAUI](https://github.com/taublast/DrawnUi.Maui)
 
-Don't miss another game [made with DrawnUI: Breakout](https://github.com/taublast/DrawnUi.Breakout) !
-
-## _The Challenge_
-
-To create a simple yet heavily animated arcade cross-platform game, using .NET MAUI XAML with Skia drawn UI, showing all the advantages that [.NET MAUI](https://learn.microsoft.com/en-us/dotnet/maui) and [SkiaSharp](https://github.com/mono/SkiaSharp) provide. 
-The game runs on Android, Windows, iOS, and Mac (Catalyst), all from a single code base. Desktop versions support both mouse and keyboard.
+Don't miss another Blazor/MAUI game with AUDIO and more perks [Bricks Breaker](https://github.com/taublast/DrawnUi.Breakout) !
 
 ## _Implementation_
 
