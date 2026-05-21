@@ -24,7 +24,7 @@ public partial class SpaceShooter
                 SpeedRatio = 0.6f,
                 Repeat = 0,
                 UseCache = SkiaCacheType.ImageDoubleBuffered,
-                Source = $"Space/Lottie/crash.json"
+                Source = WebAssetPaths.Build("Space/Lottie/crash.json")
             };
             explosion.ResetAnimationState();
             return explosion;
