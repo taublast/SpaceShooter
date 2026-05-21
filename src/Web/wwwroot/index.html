@@ -12,11 +12,21 @@
     <link rel="preload" href="_content/DrawnUi.Blazor.Core/drawnui-logo.svg" as="image" type="image/svg+xml" />
     <link rel="icon" type="image/svg+xml" href="_content/DrawnUi.Blazor.Core/drawnui-logo.svg" />
     <script>
+        globalThis.spaceShooterAssetVersion = Date.now().toString();
         globalThis.writeVersionedStylesheet = (href) => {
-            document.write(`<link rel="stylesheet" href="${href}?v=${Date.now()}" />`);
+            document.write(`<link rel="stylesheet" href="${href}?v=${globalThis.spaceShooterAssetVersion}" />`);
         };
         globalThis.writeVersionedScript = (src, extraAttributes = '') => {
-            document.write(`<script src="${src}?v=${Date.now()}" ${extraAttributes}><\/script>`);
+            document.write(`<script src="${src}?v=${globalThis.spaceShooterAssetVersion}" ${extraAttributes}><\/script>`);
+        };
+        globalThis.preloadModule = (src) => import(src);
+
+        globalThis.ensureBlazorRuntime = () => {
+            if (!globalThis.spaceShooterBlazorModule) {
+                globalThis.spaceShooterBlazorModule = globalThis.preloadModule('./_framework/blazor.webassembly.js');
+            }
+
+            return globalThis.spaceShooterBlazorModule;
         };
     </script>
     <script>
@@ -60,10 +70,10 @@
 
     <script>
         globalThis.writeVersionedScript('_content/DrawnUi.Blazor.Core/drawnui-loader.js');
-        globalThis.writeVersionedScript('_framework/blazor.webassembly.js', 'autostart="false"');
     </script>
     <script>
-        globalThis.DrawnUiLoader.startBlazorWithLoader({})
+        globalThis.ensureBlazorRuntime()
+            .then(() => globalThis.DrawnUiLoader.startBlazorWithLoader({}))
             .catch(error => {
                 console.error('Blazor startup failed.', error);
                 const errorUi = document.getElementById('blazor-error-ui');

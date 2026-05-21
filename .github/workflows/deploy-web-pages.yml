@@ -1,0 +1,104 @@
+name: Deploy Space Shooter Web to GitHub Pages
+
+"on":
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      pages-artifact-id: ${{ steps.upload-pages-artifact.outputs.artifact_id }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: ./global.json
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Restore required workloads
+        run: dotnet workload restore ./src/Web/SpaceShooterWeb.csproj
+
+      - name: Publish Blazor WebAssembly app
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $publishRoot = Join-Path $env:RUNNER_TEMP 'github-pages'
+
+          if (Test-Path $publishRoot) {
+              Remove-Item $publishRoot -Recurse -Force
+          }
+
+          dotnet publish ./src/Web/SpaceShooterWeb.csproj -c Release -o $publishRoot
+          if ($LASTEXITCODE -ne 0) {
+              exit $LASTEXITCODE
+          }
+
+          $siteRoot = Join-Path $publishRoot 'wwwroot'
+          $repoName = ($env:GITHUB_REPOSITORY -split '/')[1]
+
+          if ($repoName.EndsWith('.github.io')) {
+              $basePath = '/'
+          }
+          else {
+              $basePath = "/$repoName/"
+          }
+
+          $indexPath = Join-Path $siteRoot 'index.html'
+          $indexHtml = Get-Content $indexPath -Raw
+          $indexHtml = $indexHtml.Replace('<base href="/" />', "<base href=`\"$basePath`\" />")
+          Set-Content -Path $indexPath -Value $indexHtml
+
+          Copy-Item $indexPath (Join-Path $siteRoot '404.html') -Force
+          New-Item -ItemType File -Path (Join-Path $siteRoot '.nojekyll') -Force | Out-Null
+
+      - name: Upload Pages artifact
+        id: upload-pages-artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: ${{ runner.temp }}/github-pages/wwwroot
+          retention-days: 1
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  cleanup:
+    needs:
+      - build
+      - deploy
+    if: ${{ needs.build.outputs.pages-artifact-id != '' }}
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+
+    steps:
+      - name: Delete Pages artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPOSITORY: ${{ github.repository }}
+          ARTIFACT_ID: ${{ needs.build.outputs.pages-artifact-id }}
+        run: gh api -X DELETE "/repos/${REPOSITORY}/actions/artifacts/${ARTIFACT_ID}"
