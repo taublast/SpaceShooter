@@ -58,7 +58,7 @@ jobs:
 
           $indexPath = Join-Path $siteRoot 'index.html'
           $indexHtml = Get-Content $indexPath -Raw
-          $indexHtml = $indexHtml.Replace('<base href="/" />', "<base href=`\"$basePath`\" />")
+          $indexHtml = $indexHtml.Replace('<base href="/" />', ('<base href="' + $basePath + '" />'))
           Set-Content -Path $indexPath -Value $indexHtml
 
           Copy-Item $indexPath (Join-Path $siteRoot '404.html') -Force
