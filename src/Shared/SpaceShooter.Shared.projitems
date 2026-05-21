@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>e3a8a9b0-c1d2-4e56-89ab-cdef01234567</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>SpaceShooter</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- Game logic (platform-agnostic) -->
+    <Compile Include="$(MSBuildThisFileDirectory)Game\SpaceShooter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\SpaceShooter.BulletSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\SpaceShooter.EnemySprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\SpaceShooter.ExplosionSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\SpaceShooter.ExplosionCrashSprite.cs" />
+    <!-- Internals -->
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Internals\GameState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Internals\GameKey.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Internals\IReusableSprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\Internals\IWithHitBox.cs" />
+    <!-- HealthBar helpers (implementations stay in platform projects) -->
+    <Compile Include="$(MSBuildThisFileDirectory)Game\HealthBar\SignalInverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Game\HealthBar\FloatingPosition.cs" />
+  </ItemGroup>
+</Project>

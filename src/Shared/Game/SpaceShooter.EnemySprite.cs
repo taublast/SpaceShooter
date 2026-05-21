@@ -2,6 +2,9 @@
 // https://www.mooict.com/wpf-c-tutorial-create-a-space-battle-shooter-game-in-visual-studio/7/
 
 using AppoMobi.Specials;
+using DrawnUi;
+using DrawnUi.Draw;
+using DrawnUi.Views;
 using SkiaSharp;
 
 namespace SpaceShooter.Game;
@@ -21,7 +24,7 @@ public partial class SpaceShooter
                 LoadSourceOnFirstDraw = true, //do not load source when it changed but only when first drawing
                 Source = $"{SpritesPath}/{enemySpriteCounter}.png", //random image
                 SpeedRatio = 0.9f + enemySpriteCounter * 2 / 10f, //random speed
-                ColorTint = Color.Parse("#22110022"), //tinted a bit for our game
+                ColorTint = Color.FromHex("#22110022"), //tinted a bit for our game
                 ZIndex = 4,
                 UseCache = SkiaCacheType.Image,
                 WidthRequest = 50,

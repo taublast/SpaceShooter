@@ -1,3 +1,5 @@
+using DrawnUi.Draw;
+
 namespace SpaceShooter.Game;
 
 public class SignalInverter : SkiaShape
@@ -61,8 +63,6 @@ public class SignalInverter : SkiaShape
         var value = _widthConstraint - _widthConstraint * v;
 
         WidthRequest = value;
-
-        //var ratio = value / _widthConstraint;
 
         var max = 1.0 - v;
 
@@ -145,7 +145,7 @@ public class SignalInverter : SkiaShape
         {
             Stick = 0.033,
             Base = 0.033
-        },  
+        },
         //3
         new ()
         {
@@ -154,7 +154,7 @@ public class SignalInverter : SkiaShape
         },
     };
 
-    public double[] Points
+    public new double[] Points
     {
         get
         {

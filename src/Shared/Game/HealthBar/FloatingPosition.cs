@@ -21,5 +21,4 @@ public class FloatingPosition
     /// 0.0 - 1.0
     /// </summary>
     public double Value { get; set; }
-
 }

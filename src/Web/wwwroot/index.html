@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="theme-color" content="#020816" />
+    <meta name="application-name" content="Space Shooter" />
+    <title>Space Shooter</title>
+    <base href="/" />
+    <link rel="preload" id="webassembly" />
+    <link rel="preload" href="_content/DrawnUi.Blazor.Core/drawnui-logo.svg" as="image" type="image/svg+xml" />
+    <link rel="icon" type="image/svg+xml" href="_content/DrawnUi.Blazor.Core/drawnui-logo.svg" />
+    <script>
+        globalThis.writeVersionedStylesheet = (href) => {
+            document.write(`<link rel="stylesheet" href="${href}?v=${Date.now()}" />`);
+        };
+        globalThis.writeVersionedScript = (src, extraAttributes = '') => {
+            document.write(`<script src="${src}?v=${Date.now()}" ${extraAttributes}><\/script>`);
+        };
+    </script>
+    <script>
+        globalThis.writeVersionedStylesheet('css/app.css');
+        globalThis.writeVersionedStylesheet('_content/DrawnUi.Blazor.Core/drawnui-loader.css');
+        globalThis.writeVersionedStylesheet('SpaceShooterWeb.styles.css');
+    </script>
+    <script type="importmap"></script>
+    <style>
+        html, body {
+            background: #020816;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="boot-shell" aria-label="Loading Space Shooter">
+            <div class="boot-stage">
+                <div class="boot-logo-wrap">
+                    <img class="boot-logo" src="_content/DrawnUi.Blazor.Core/drawnui-logo.svg" alt="DrawnUI" />
+                </div>
+                <div class="boot-foot">
+                    <div class="boot-copy">Space Shooter</div>
+                    <div class="boot-progress" aria-hidden="true">
+                        <div class="boot-progress-track">
+                            <div class="boot-progress-fill"></div>
+                        </div>
+                        <div class="boot-progress-text"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="blazor-error-ui" style="display:none">
+        An unhandled error has occurred.
+        <a href="." class="reload">Reload</a>
+        <span class="dismiss">&#x1F5D9;</span>
+    </div>
+
+    <script>
+        globalThis.writeVersionedScript('_content/DrawnUi.Blazor.Core/drawnui-loader.js');
+        globalThis.writeVersionedScript('_framework/blazor.webassembly.js', 'autostart="false"');
+    </script>
+    <script>
+        globalThis.DrawnUiLoader.startBlazorWithLoader({})
+            .catch(error => {
+                console.error('Blazor startup failed.', error);
+                const errorUi = document.getElementById('blazor-error-ui');
+                if (errorUi) errorUi.style.display = 'block';
+            });
+    </script>
+</body>
+
+</html>

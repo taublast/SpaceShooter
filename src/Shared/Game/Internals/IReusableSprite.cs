@@ -1,7 +1,7 @@
 namespace SpaceShooter.Game;
 
 /// <summary>
-/// Resusable model, to avoid GC
+/// Reusable model, to avoid GC
 /// </summary>
 public interface IReusableSprite
 {

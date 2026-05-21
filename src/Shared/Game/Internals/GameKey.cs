@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.Game;
+namespace SpaceShooter.Game;
 
 /// <summary>
 /// Game-dependent action keys
@@ -10,5 +10,3 @@ public enum GameKey
     Left,
     Right
 }
-
-

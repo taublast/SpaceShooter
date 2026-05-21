@@ -1,3 +1,8 @@
+// NOTE: Parts of the code below are based on
+// https://www.mooict.com/wpf-c-tutorial-create-a-space-battle-shooter-game-in-visual-studio/7/
+
+using DrawnUi.Draw;
+
 namespace SpaceShooter.Game;
 
 public partial class SpaceShooter

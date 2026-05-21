@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceShooter", "SpaceShooter.csproj", "{69F100A7-4535-4EDF-BFCC-22BD472FC42B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F88B066-9E60-4E8A-949A-F4DBA740BEDC}"
 	ProjectSection(SolutionItems) = preProject
 		..\README.md = ..\README.md
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpaceShooter", "SpaceShooter.csproj", "{69F100A7-4535-4EDF-BFCC-22BD472FC42B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceShooterWeb", "Web\SpaceShooterWeb.csproj", "{F4B9C0D1-E2F3-5678-ABCD-EF0123456789}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SpaceShooter.Shared", "Shared\SpaceShooter.Shared.shproj", "{E3A8A9B0-C1D2-4E56-89AB-CDEF01234567}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B1C2D3E4-F5A6-7890-BCDE-F01234567890}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,9 +28,21 @@ Global
 		{69F100A7-4535-4EDF-BFCC-22BD472FC42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69F100A7-4535-4EDF-BFCC-22BD472FC42B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{69F100A7-4535-4EDF-BFCC-22BD472FC42B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{F4B9C0D1-E2F3-5678-ABCD-EF0123456789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4B9C0D1-E2F3-5678-ABCD-EF0123456789}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4B9C0D1-E2F3-5678-ABCD-EF0123456789}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4B9C0D1-E2F3-5678-ABCD-EF0123456789}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E3A8A9B0-C1D2-4E56-89AB-CDEF01234567} = {B1C2D3E4-F5A6-7890-BCDE-F01234567890}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Shared\SpaceShooter.Shared.projitems*{69f100a7-4535-4edf-bfcc-22bd472fc42b}*SharedItemsImports = 5
+		Shared\SpaceShooter.Shared.projitems*{e3a8a9b0-c1d2-4e56-89ab-cdef01234567}*SharedItemsImports = 13
+		Shared\SpaceShooter.Shared.projitems*{f4b9c0d1-e2f3-5678-abcd-ef0123456789}*SharedItemsImports = 5
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CA02A162-5ACD-4EED-93D2-D343C21431A8}

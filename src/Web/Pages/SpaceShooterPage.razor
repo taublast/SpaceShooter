@@ -1,0 +1,87 @@
+@page "/"
+@using DrawnUi.Controls
+@using DrawnUi.Draw
+@using DrawnUi.Infrastructure.Enums
+@using DrawnUi.Views
+
+<PageTitle>Space Shooter</PageTitle>
+
+<div class="game-page"
+     draggable="false"
+     @oncontextmenu:preventDefault="true"
+     @oncontextmenu:stopPropagation="true">
+    <AspectLockedViewportHost
+        AspectWidth="@ViewportWidth"
+        AspectHeight="@ViewportHeight"
+        BackgroundColor="#020816"
+        IsFullscreen="@_isFullscreen"
+        EmbeddedMargin="0 auto"
+        FitVisibleHeight="true"
+        ViewportOffsetPixels="0">
+
+        <AspectLockedCanvas
+            UpdateMode="@UpdateModeType.Constant"
+            @ref="_canvas"
+            Content="_canvasContent"
+            LogicalWidth="@ViewportWidth"
+            LogicalHeight="@ViewportHeight"
+            HorizontalOptions="LayoutOptions.Fill"
+            VerticalOptions="LayoutOptions.Fill"
+            BackgroundColor="#020816"
+            RenderingMode="@RenderingModeType.Accelerated"
+            Gestures="@GesturesMode.Enabled"
+            IsFullscreen="@_isFullscreen"
+            IsFullscreenChanged="OnFullscreenChanged"/>
+
+    </AspectLockedViewportHost>
+</div>
+
+@code {
+
+    private const float ViewportWidth = 480f;
+    private const float ViewportHeight = 800f;
+
+    private SkiaControl _canvasContent;
+    private AspectLockedCanvas _canvas;
+    private bool _isFullscreen;
+
+    public SpaceShooterPage()
+    {
+        _canvasContent = new SkiaLayer()
+        {
+            VerticalOptions = LayoutOptions.Fill,
+            HorizontalOptions = LayoutOptions.Fill,
+            Children =
+            {
+                new global::SpaceShooter.Game.SpaceShooter()
+                {
+                    WidthRequest = ViewportWidth,
+                    HeightRequest = ViewportHeight,
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center,
+                },
+#if DEBUG
+                new SkiaLabelFps()
+                {
+                    UseCache = SkiaCacheType.GPU,
+                    Margin = new(0, 0, 4, 24),
+                    VerticalOptions = LayoutOptions.End,
+                    HorizontalOptions = LayoutOptions.End,
+                    Rotation = -45,
+                    FontSize = 11,
+                    BackgroundColor = Colors.DarkRed,
+                    TextColor = Colors.White,
+                    ZIndex = 110,
+                }
+#endif
+            }
+        };
+    }
+
+    private Task OnFullscreenChanged(bool isFullscreen)
+    {
+        _isFullscreen = isFullscreen;
+        _canvas?.InvalidateChildren();
+        return Task.CompletedTask;
+    }
+}
