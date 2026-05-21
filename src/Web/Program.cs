@@ -11,7 +11,7 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 
 var assetBaseUri = new Uri(builder.HostEnvironment.BaseAddress);
 
-WebAssetPaths.Configure(assetBaseUri);
+AssetPaths.ConfigureWebBase(assetBaseUri);
 
 DrawnExtensions.RegisterFont("FontGame", BuildAssetUrl(assetBaseUri, "fonts/Orbitron-Regular.ttf"));
 DrawnExtensions.RegisterFont("FontGameMedium", BuildAssetUrl(assetBaseUri, "fonts/Orbitron-Medium.ttf"));

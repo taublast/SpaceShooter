@@ -22,7 +22,7 @@ public partial class SpaceShooter
             var newEnemy = new EnemySprite()
             {
                 LoadSourceOnFirstDraw = true, //do not load source when it changed but only when first drawing
-                Source = WebAssetPaths.Build($"{SpritesPath}/{enemySpriteCounter}.png"), //random image
+                Source = AssetPaths.Resolve($"{SpritesPath}/{enemySpriteCounter}.png"), //random image
                 SpeedRatio = 0.9f + enemySpriteCounter * 2 / 10f, //random speed
                 ColorTint = Color.FromHex("#22110022"), //tinted a bit for our game
                 ZIndex = 4,
