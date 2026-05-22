@@ -106,7 +106,7 @@
   <Import Project="..\Shared\SpaceShooter.Shared.projitems" Label="Shared" />
 
   <ItemGroup>
-    <PackageReference Include="DrawnUi.Maui.Game" Version="1.10.0.1-preview1.3" />
+    <PackageReference Include="DrawnUi.Maui.Game" Version="1.10.0.1-preview1.4" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
   </ItemGroup>
 
